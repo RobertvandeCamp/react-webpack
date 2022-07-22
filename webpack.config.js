@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = [
     {
         entry: {
+            // index.js is just plain old Javascript
             pageOne: "./src/index.js",
         },
         output: {
@@ -19,7 +20,7 @@ module.exports = [
             // exclude node_modules
             rules: [
                 {
-                    test: /\.(js)$/,
+                    test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
                     use: ["babel-loader"],
                 },
@@ -27,7 +28,7 @@ module.exports = [
         },
         // pass all js files through Babel
         resolve: {
-            extensions: ["*", ".js"],
+            extensions: ["*", ".js", ".jsx"],
         },// In this multi configuration setup, the devserver on the first config is taken into account and used for all the configs in the array.
         //https://webpack.js.org/configuration/dev-server/
         devServer: {
@@ -39,6 +40,7 @@ module.exports = [
     },
     {
         entry: {
+            //index2.js is the entry point for a React root.
             pageTwo: "./src/index2.js",
         },
         output: {
